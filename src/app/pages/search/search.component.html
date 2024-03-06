@@ -1,1 +1,48 @@
-<p>search works!</p>
+<div class="search-container mt-4 px-5">
+  <div class="grid grid-flow-row-dense grid-cols-3 gap-3 ">
+    <div class="col-span-2">
+
+      <input class="form-control" type="text" [(ngModel)]="searchTerm" placeholder="Search...">
+    </div>
+    <div class="flex">
+      <select class="form-control" [(ngModel)]="searchKey">
+        <option value="title">Title</option>
+        <option value="author">Author Name</option>
+        <option value="subject">Subject</option>
+      </select>
+      <button class="rounded border ml-3 px-3 bg-stone-950 text-white" (click)="search()">
+        search
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+<div *ngIf="loading" class="flex justify-center content-center my-40">
+  <div class="lds-ripple">
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<div class="search-results" *ngIf="searchResults.length > 0">
+  <section class="book-grid">
+    <div *ngFor="let book of searchResults" class="flex flex-row border">
+      <div class="basis-1/3 ">
+        <img [src]="book.cover ? book.cover : 'assets/placeholder.png'" alt="Book Cover">
+      </div>
+      <div class="basis-2/3 pt-3 px-1.5">
+        <div class="details">
+          <p><strong>Title:</strong> {{ book.title }}</p>
+          <p><strong>Publish Date:</strong> {{ book.publishDate }}</p>
+          <p><strong>Authors: </strong> <a *ngFor="let author of book.authors"
+              [routerLink]="['author/', author.key]">{{ author.name }}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="noResult" class="flex justify-center my-40 text-5xl font-bold">
+  No results found.
+</div>
