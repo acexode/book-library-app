@@ -24,6 +24,9 @@ export class HeaderComponent {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
   private checkViewport() {
     this.isMobileView = window.innerWidth <= 768; // Adjust as needed
   }

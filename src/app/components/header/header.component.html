@@ -1,9 +1,9 @@
 <header>
     <img src="assets/logo.png" alt="App Logo">
-    <nav >
-      <a routerLink="/">Home</a>
-      <a routerLink="/search">Search</a>
-      <a routerLink="/wishlist">Wish-list</a>
+    <nav [ngClass]="{ 'menu-open': isMenuOpen || !isMobileView }">
+      <a (click)="closeMenu()" routerLink="/">Home</a>
+      <a (click)="closeMenu()" routerLink="/search">Search</a>
+      <a (click)="closeMenu()" routerLink="/wishlist">Wish-list</a>
     </nav>
     <a class="menu-icon" (click)="toggleMenu()" *ngIf="isMobileView">
         <i class="fa fa-bars"></i>
