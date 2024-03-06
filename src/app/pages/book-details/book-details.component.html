@@ -1,1 +1,41 @@
-<p>book-details works!</p>
+<div *ngIf="bookDetails"  class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+    <div class="space-y-1.5 p-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+      <div class="grid gap-1">
+        <h2 class="text-lg font-bold tracking-tight">
+          {{ bookDetails?.title }}
+        </h2>
+        <p class="text-sm leading-none text-muted-foreground">By {{bookDetails?.author}}</p>
+      </div>
+  
+    </div>
+    <div class="p-6 grid gap-4 text-sm leading-loose">
+      <div class="flex items-start gap-4"><img [src]="bookDetails?.cover ? bookDetails?.cover : 'assets/placeholder.png'"
+          [alt]="bookDetails.title" width="150" height="225"
+          class="aspect-[3/4] object-cover border border-gray-200 w-36 rounded-lg overflow-hidden dark:border-gray-800">
+        <div class="grid gap-2">
+          <div class="flex items-center gap-2"><i class="fa fa-calendar" aria-hidden="true"></i>
+            <div class="text-xs text-muted-foreground">Published</div>
+            <div>{{bookDetails?.published || 'NA'}}</div>
+          </div>
+          <div class="flex items-center gap-2"><i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <div class="text-xs text-muted-foreground">Edition Count</div>
+            <div>{{bookDetails?.edition_count}}</div>
+          </div>
+          <div class="flex items-center gap-2"><i class="fa fa-columns" aria-hidden="true"></i>
+            <div class="text-xs text-muted-foreground">Pages</div>
+            <div>{{bookDetails?.pages || 'NA'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="grid gap-2">
+        <button (click)="addToWishList(bookDetails)" class="border rounded">Add to Wishlist</button>
+        <div id="description">
+          <p>
+            {{bookDetails.subjects}}
+          </p>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  

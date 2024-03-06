@@ -1,12 +1,39 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthorResponse } from '../../model/author-response.interface';
+import { AuthorService } from '../../services/author.service';
 
 @Component({
   selector: 'app-author-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './author-details.component.html',
   styleUrl: './author-details.component.scss'
 })
-export class AuthorDetailsComponent {
+export class AuthorDetailsComponent  implements OnInit{
+  authorId: string = '';
+  authorDetails!: AuthorResponse;
+  constructor(
+    private route: ActivatedRoute,
+    private authorService: AuthorService
+  ) {
+  }
 
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.authorId = params['id'];
+      this.getAuthor()
+    });
+  }
+
+  getAuthor(){
+    this.authorService.getAuthorDetails(this.authorId).subscribe((res: AuthorResponse) => {
+      console.log(res);
+      this.authorDetails = {
+        ...res,
+        photo: res.photos ?  `https://covers.openlibrary.org/b/id/${res.photos}-M.jpg` : ''
+      }
+    })
+  }
 }

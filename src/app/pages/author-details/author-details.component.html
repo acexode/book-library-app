@@ -1,1 +1,40 @@
-<p>author-details works!</p>
+<div *ngIf="authorDetails"  class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+    <div class="space-y-1.5 p-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+      <div class="grid gap-1">
+        <h2 class="text-lg font-bold tracking-tight">
+          {{ authorDetails.name }}
+        </h2>
+        
+      </div>
+  
+    </div>
+    <div class="p-6 grid gap-4 text-sm leading-loose">
+      <div class="flex items-start gap-4"><img [src]="authorDetails.photo ? authorDetails.photo : 'assets/placeholder.png'"
+          [alt]="authorDetails.name" width="150" height="225"
+          class="aspect-[3/4] object-cover border border-gray-200 w-36 rounded-lg overflow-hidden dark:border-gray-800">
+        <div class="grid gap-2">
+          <div class="flex items-center gap-2"><i class="fa fa-calendar" aria-hidden="true"></i>
+            <div class="text-xs text-muted-foreground">Birth Date</div>
+            <div>{{authorDetails.birth_date || 'NA'}}</div>
+          </div>
+          <div class="flex items-center gap-2"><i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <div class="text-xs text-muted-foreground">Edition Count</div>
+            <div>{{authorDetails.revision || 'NA'}}</div>
+          </div>
+          <div class="flex items-center gap-2"><i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <div class="text-xs text-muted-foreground">Alternate Names</div>
+            <div>{{authorDetails.alternate_names.join(', ') || null}}</div>
+          </div>
+        
+        </div>
+      </div>
+      <div class="grid gap-2">
+        
+        <div id="description">
+          
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
