@@ -33,15 +33,16 @@ export class SearchComponent {
       (results: SearchResponse) => {
         console.log(results);
         this.loading = false;
-        // Limit the search results to the first 9 books
         if(results.numFound > 0){
-          this.noResult = false
+          this.noResult = false;
+          console.log('found', results.numFound);
           this.searchResults = results.docs.map(doc =>{
             return {
               id: doc.key.split('/')[2],
               title: doc.title,
               publishDate: doc.first_publish_year,
-              authors: doc.author_name[0],
+              authors:  doc?.author_name,
+              author_key: doc.author_key,
               cover: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : null
             };
           })
@@ -53,7 +54,6 @@ export class SearchComponent {
       },
       (error) => {
         console.error('Error searching for books:', error);
-        // Handle error cases here
       }
     );
   }
