@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { BookResponse } from '../model/book-response.interface';
-import { bookEndpoints } from '../endpoint';
+import { bookEndpoints } from '../configs/endpoint';
 
 @Injectable({
   providedIn: 'root',

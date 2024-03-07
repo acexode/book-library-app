@@ -11,7 +11,7 @@ import { BookService } from '../../services/book.service';
 import { CommonModule } from '@angular/common';
 import { BookResponse } from '../../model/book-response.interface';
 import { BookStorageService } from '../../services/book-storage.service';
-import { bookCover } from '../../endpoint';
+import { bookCover } from '../../configs/endpoint';
 
 
 @Component({

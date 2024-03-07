@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SearchResponse } from '../../model/search-response.interface';
 import { RouterLink } from '@angular/router';
-import { bookCover } from '../../endpoint';
+import { bookCover } from '../../configs/endpoint';
 
 @Component({
   selector: 'app-search',

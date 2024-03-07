@@ -5,7 +5,7 @@ import {NgClass, NgFor, NgIf} from "@angular/common";
 import { Router, RouterLink } from '@angular/router';
 import { BookStorageService } from '../../services/book-storage.service';
 import { FinanceBook } from '../../model/finance-book.interface';
-import { bookCover } from '../../endpoint';
+import { bookCover } from '../../configs/endpoint';
 @Component({
   selector: 'app-home',
   standalone: true,

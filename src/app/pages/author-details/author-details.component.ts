@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthorResponse } from '../../model/author-response.interface';
 import { AuthorService } from '../../services/author.service';
-import { bookCover } from '../../endpoint';
+import { bookCover } from '../../configs/endpoint';
 
 @Component({
   selector: 'app-author-details',
