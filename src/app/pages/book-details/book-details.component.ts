@@ -23,7 +23,7 @@ import { bookCover } from '../../endpoint';
 })
 export class BookDetailsComponent implements OnInit {
   bookId: string = '';
-  bookDetails: any; // Modify the type according to your data structure
+  bookDetails: any;
   private readonly injector = inject(Injector);
   constructor(
     private route: ActivatedRoute,

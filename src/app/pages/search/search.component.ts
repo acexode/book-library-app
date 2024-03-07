@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SearchResponse } from '../../model/search-response.interface';
 import { RouterLink } from '@angular/router';
+import { bookCover } from '../../endpoint';
 
 @Component({
   selector: 'app-search',
@@ -23,7 +24,6 @@ export class SearchComponent {
 
   search(): void {
     if (!this.searchTerm.trim()) {
-      // If the search term is empty, clear the search results
       this.searchResults = [];
       return;
     }
@@ -43,7 +43,7 @@ export class SearchComponent {
               publishDate: doc.first_publish_year,
               authors:  doc?.author_name,
               author_key: doc.author_key,
-              cover: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : null
+              cover: doc.cover_i ? `${bookCover}${doc.cover_i}-M.jpg` : null
             };
           })
 

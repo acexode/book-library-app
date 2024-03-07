@@ -6,3 +6,6 @@ export const bookEndpoints = {
     getBookDetails: `${baseUrl}/works/`,
     searchBooks: `${baseUrl}/search.json?`,
 }
+export const authorEndpoints = {
+    getAuthorDetails: `${baseUrl}/authors/`,
+}

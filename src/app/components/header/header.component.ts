@@ -28,6 +28,6 @@ export class HeaderComponent {
     this.isMenuOpen = false;
   }
   private checkViewport() {
-    this.isMobileView = window.innerWidth <= 768; // Adjust as needed
+    this.isMobileView = window.innerWidth <= 768;
   }
 }
