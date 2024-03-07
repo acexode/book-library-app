@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthorResponse } from '../../model/author-response.interface';
 import { AuthorService } from '../../services/author.service';
+import { bookCover } from '../../endpoint';
 
 @Component({
   selector: 'app-author-details',
@@ -32,7 +33,7 @@ export class AuthorDetailsComponent  implements OnInit{
       console.log(res);
       this.authorDetails = {
         ...res,
-        photo: res.photos ?  `https://covers.openlibrary.org/b/id/${res.photos}-M.jpg` : ''
+        photo: res.photos ?  `${bookCover}${res.photos}-M.jpg` : ''
       }
     })
   }

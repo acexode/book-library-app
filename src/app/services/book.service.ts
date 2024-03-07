@@ -2,30 +2,27 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { BookResponse } from '../model/book-response.interface';
+import { bookEndpoints } from '../endpoint';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  private apiUrl = 'https://openlibrary.org/subjects/finance.json?limit=9';
-  bookSubject: BehaviorSubject<BookResponse | null> =
-    new BehaviorSubject<BookResponse | null>(null);
   bookSignal = signal<BookResponse | null>(null);
-
+  limit = '&limit=9'
   constructor(private http: HttpClient) {
     this.getFinanceBooks().subscribe((res: BookResponse) => {
-      this.bookSubject.next(res || null);
       console.log(res);
       this.bookSignal.set(res);
     });
   }
 
   getFinanceBooks(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(bookEndpoints.getFinanceBooks);
   }
 
   searchBooksByTitle(title: string): Observable<any> {
-    const apiUrl = `https://openlibrary.org/search.json?title=${title}&limit=9`;
+    const apiUrl = `${bookEndpoints.searchBooks}title=${title}&limit=9`;
     return this.http.get<any>(apiUrl);
   }
   searchBooks(searchTerm: string, searchKey: string) {
@@ -48,17 +45,17 @@ export class BookService {
     return response;
   }
   searchBooksByAuthor(author: string): Observable<any> {
-    const apiUrl = `https://openlibrary.org/search.json?author=${author}&limit=9`;
+    const apiUrl = `${bookEndpoints.searchBooks}author=${author}&limit=9`;
     return this.http.get<any>(apiUrl);
   }
 
   searchBooksBySubject(subject: string): Observable<any> {
-    const apiUrl = `https://openlibrary.org/subjects/${subject}.json?limit=9`;
+    const apiUrl = `${bookEndpoints.searchBooks}subject=${subject}.json?limit=9`;
     return this.http.get<any>(apiUrl);
   }
 
   getBookDetails(id: string): Observable<any> {
-    const apiUrl = `https://openlibrary.org/works/${id}.json`;
+    const apiUrl = `${bookEndpoints.getBookDetails}${id}.json`;
     return this.http.get<any>(apiUrl);
   }
 }

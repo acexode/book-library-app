@@ -4,6 +4,8 @@ import { BookResponse, Book } from '../../model/book-response.interface';
 import {NgClass, NgFor, NgIf} from "@angular/common";
 import { Router, RouterLink } from '@angular/router';
 import { BookStorageService } from '../../services/book-storage.service';
+import { FinanceBook } from '../../model/finance-book.interface';
+import { bookCover } from '../../endpoint';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -12,7 +14,7 @@ import { BookStorageService } from '../../services/book-storage.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  financeBooks: any[] = [];
+  financeBooks: FinanceBook[] = [];
   isMenuOpen: boolean = false;
   isMobileView: boolean = false;
   loading: boolean = false;
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit {
             title: book.title,
             publishDate: book.first_publish_year,
             authors: book.authors.map(e => ({... e, key: e.key.split('/')[2]})),
-            cover: book.cover_id ? `https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg` : null
+            cover: book.cover_id ? `${bookCover}${book.cover_id}-M.jpg` : null
           };
         });
       },

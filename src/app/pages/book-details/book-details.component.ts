@@ -11,6 +11,7 @@ import { BookService } from '../../services/book.service';
 import { CommonModule } from '@angular/common';
 import { BookResponse } from '../../model/book-response.interface';
 import { BookStorageService } from '../../services/book-storage.service';
+import { bookCover } from '../../endpoint';
 
 
 @Component({
@@ -48,7 +49,7 @@ export class BookDetailsComponent implements OnInit {
           subjects: work?.subject.join(', '),
           author: work?.authors.map((e: any) => e.name).join(', '),
           cover: work?.cover_id
-            ? `https://covers.openlibrary.org/b/id/${work?.cover_id}-M.jpg`
+            ? `${bookCover}${work?.cover_id}-M.jpg`
             : null,
         };
       });
